@@ -39,7 +39,7 @@ export const UserForm = () => {
       try {
         setLoading(true);
         // Perform an update or create operation based on the presence of an ID
-        const res = id ? await update('users')(id, values) : await create('users')(values);
+        const res = id ? await update('users')(id, values) : await create('users')(null,values);
         setLoading(false);
         // Redirect to the users' page after successful submission
         if ((id && res.status === 200) || (!id && res.status === 201)) {

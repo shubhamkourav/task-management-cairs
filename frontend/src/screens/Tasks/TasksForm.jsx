@@ -51,7 +51,7 @@ export const TasksForm = () => {
       try {
         setLoading(true);
         // Perform an update or create operation based on the presence of an ID
-        const res = id ? await update('tasks')(id, values) : await create('tasks')(values);
+        const res = id ? await update('tasks')(id, values) : await create('tasks')(null,values);
         setLoading(false);
         // Redirect to the tasks page after successful submission
         if ((id && res.status === 200) || (!id && res.status === 201)) {

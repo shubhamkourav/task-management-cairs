@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const tasksController = require('../controllers/tasksController');
+const validate = require('../middleware/schemaValidation');
+const { createTask, updateTask } = require('../schema/validation/taskValidation');
 
 // Create a new task
-router.post('/', tasksController.createTask);
+router.post('/',validate(createTask), tasksController.createTask);
 
 // Retrieve all tasks
 router.get('/', tasksController.getAllTasks);
@@ -12,7 +14,7 @@ router.get('/', tasksController.getAllTasks);
 router.get('/:id', tasksController.getTaskById);
 
 // Update a task by ID
-router.put('/:id', tasksController.updateTask);
+router.put('/:id',validate(updateTask), tasksController.updateTask);
 
 // Delete a task by ID
 router.delete('/:id', tasksController.deleteTask);
